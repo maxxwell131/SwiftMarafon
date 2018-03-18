@@ -56,12 +56,12 @@ default:
 var student = (firstName: "Василий", middleName: "Иванович",lastName: "Зенькеръ")
 
 switch student {
-case _ where student.firstName.hasPrefix("А") || student.firstName.hasPrefix("О"):
-    print("дорогой студент: \(student.firstName)")
-case _ where student.middleName.hasPrefix("В") || student.middleName.hasPrefix("Д"):
-    print("дорогой студент: \(student.firstName) \(student.middleName)")
-case _ where student.lastName.hasPrefix("Е") || student.lastName.hasPrefix("З"):
-    print("дорогой студент: \(student.lastName)")
+case let(firstName, _ , _ ) where firstName.hasPrefix("А") || firstName.hasPrefix("О"):
+    print("дорогой студент: \(firstName)")
+case let(firstName, middleName , _ ) where middleName.hasPrefix("В") || middleName.hasPrefix("Д"):
+    print("дорогой студент: \(firstName) \(middleName)")
+case let( _ , _ , lastName ) where lastName.hasPrefix("Е") || lastName.hasPrefix("З"):
+    print("дорогой студент: \(lastName)")
 default:
     print("\(student.firstName) \(student.middleName) \(student.lastName)")
 }
@@ -72,7 +72,7 @@ default:
 
 let shot = (x: 2, y: 4)
 switch shot {
-case (1,2), (2,3):
+case (1...2,2...3):
     print("ранил")
 case (2,4):
     print("убил")
