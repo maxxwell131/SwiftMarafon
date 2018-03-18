@@ -70,3 +70,35 @@ print(inputArray_4)
 /*
 5. Создайте функцию, которая принимает строку, убирает из нее все знаки препинания, делает все гласные большими буквами, согласные маленькими, а цифры меняет на соответствующие слова (9 -> nine и тд)
  */
+func editToString(inputString: String) {
+    let vovelsArray = ["а","о","и","е","ё","э","ы","у","ю","я"] //Гласные буквы
+    let consonantsArray = ["б","в","г","д","ж","з","й","к","л","м","н","п","р","с","т","ф","х","ц","ч","ш","щ"] //Согласные буквы
+    let numbersArray = ["0":"ноль","1":"один","2":"два","3":"три","4":"четыре","5":"пять","6":"шесть","7":"семь","8":"восемь","9":"девять"] //цифры
+    let signsArray = [".","?","!","-"] //знаки препинания
+    var myCharsterArray = Array(inputString)
+    
+    var coubters = (vovels: 0, consonants: 0, numbs: 0, signs: 0)
+    
+    for item in 0..<myCharsterArray.count {
+        if let indexConsonants = consonantsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //Согласные маленькими буквы
+            coubters.consonants += 1
+            myCharsterArray[indexConsonants] = Character(String(myCharsterArray[indexConsonants]).lowercased())
+        } else if let indexVovels = vovelsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //Гласные большими буквам
+            coubters.vovels += 1
+            myCharsterArray[indexVovels] = Character(String(myCharsterArray[indexVovels]).uppercased())
+        //} else if (numbersArray.index(of: String(myCharsterArray[item]))) != nil { //цифрыцифры меняет на соответствующие слова
+          //  coubters.numbs += 1
+        } else if let indexSigns = signsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //убрать знак препинания
+            coubters.signs += 1
+        }
+    }
+    print("Согласные буквы -\(coubters.consonants)\rГласные буквы - \(coubters.vovels)\rКол-во символов - \(myString.count)\rцифр - \(coubters.numbs)\rЗнаки припенания - \(coubters.signs) ")
+    
+    print(String(myCharsterArray))
+
+}
+
+
+let myString = "Представители Google также сообщили, что сегодня считают одной из основных своих задач удаление вредоносной или назойливой рекламы. В 2017 году компания посчитала некорректными, обманывающими или вредоносными 3,2 млрд рекламных объявлений в Сети. Это почти вдвое больше, чем 1,7 млрд объявлений, которые Google счел такими в 2016 году. Такими объявлениями Google, в частности, считает ссылки, которые ведут на сайты с вирусами (таких компания насчитала 79 млн штук)."
+
+editToString(inputString: myString)
