@@ -20,18 +20,23 @@ print(printPhone() + printHeart() + printEuro())
  2. Опять шахматные клетки. Реализовать функцию, которая принимает букву и символ и возвращает строку “белая” или “черная”. Строку потом распечатайте в консоль
  */
 func ColorOfCell(symbolCell: String) -> String? {
-    var result = String()
+    let colCellArray = ["a","b","c","d","e","f","g","h"]
+    let row = Int(String(symbolCell.last!))
+    var col: String = String(symbolCell.lowercased().first!)
+    var cellColor:Bool = false
+    var colStrintToNumber:Int? = 1 + colCellArray.index(of: String(col))!
     
-    var row:Int? = Int(String(symbolCell.last!))
-    var col = symbolCell.lowercased().first
-    
-    
-    
-    
+    if (row! + colStrintToNumber!) % 2 == 0  {
+        cellColor = true
+    } else {
+        cellColor = false
+    }
+    var result = cellColor ? "белая": "черная"
     return result
 }
 
 ColorOfCell(symbolCell: "a5")
+ColorOfCell(symbolCell: "a6")
 
 /*
  3. Создайте функцию, которая принимает массив, а возвращает массив в обратном порядке. Можете создать еще одну, которая принимает последовательность и возвращает массив в обратном порядке. Чтобы не дублировать код, сделайте так, чтобы функция с последовательностью вызывала первую.
