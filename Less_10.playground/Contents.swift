@@ -56,7 +56,17 @@ var reverseInputArray = reverseArray(array:inputArray)
 /*
  4. Разберитесь с inout самостоятельно и выполните задание номер 3 так, чтобы функция не возвращала перевернутый массив, но меняла элементы в существующем. Что будет если убрать inout?
  */
+func reverseArray_4(array: inout [Int]) {
+    var resultArray = [Int]()
+    for item in array {
+        resultArray.insert(item, at: 0)
+        array = resultArray
+    }
+}
 
+var inputArray_4 = [1,2,3,4,5,6,7,8,9,0,11,12,13,14]
+reverseArray_4(array: &inputArray_4)
+print(inputArray_4)
 /*
 5. Создайте функцию, которая принимает строку, убирает из нее все знаки препинания, делает все гласные большими буквами, согласные маленькими, а цифры меняет на соответствующие слова (9 -> nine и тд)
  */
