@@ -86,17 +86,18 @@ func editToString(inputString: String) {
 //        print(tmp)
         
         if let _ = consonantsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //Согласные маленькими буквы
-            coubters.consonants += 1
+            //coubters.consonants += 1
             myCharsterArray[item] = Character(String(myCharsterArray[item]).lowercased())
         } else if let _ = vovelsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //Гласные большими буквам
-            coubters.vovels += 1
+            //coubters.vovels += 1
             myCharsterArray[item] = Character(String(myCharsterArray[item]).uppercased())
-        } else if (numbersDictonary.index(forKey: String(myCharsterArray[item]))) != nil { //цифрыцифры меняет на соответствующие слова index(forke: )
+        } else if let indexDict = (numbersDictonary.index(forKey: String(myCharsterArray[item]))) { //цифрыцифры меняет на соответствующие слова index(forke: )
             coubters.numbs += 1
+            print("key:\(numbersDictonary[indexDict].key) value:\(numbersDictonary[indexDict].value)")
             //myCharsterArray[item] = Character(String(numbersDictonary[String(myCharsterArray[item])]))
             // let tmp = numbersDictonary.index(forKey: String(myCharsterArray[item]))
         } else if let _ = signsArray.index(of: (String(myCharsterArray[item])).lowercased()) { //убрать знак препинания
-            coubters.signs += 1
+            //coubters.signs += 1
             myCharsterArray[item] = Character(String(" "))
         }
     }
