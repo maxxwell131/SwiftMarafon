@@ -76,10 +76,10 @@ var myString = "Всего лет двадцать назад контроль �
 
 var myArrayChar = Array(myString)
 
-func priority(myString: String) -> Int {
+func priority(myString: Character) -> Int {
     var result: Int
     
-    switch myString.lowercased() {
+    switch myString {
     case "а","о","и","е","ё","э","ы","у","ю","я":
         result = 1
     case "б","в","г","д","ж","з","й","к","л","м","н","п","р","с","т","ф","х","ц","ч","ш","щ" :
@@ -92,12 +92,13 @@ func priority(myString: String) -> Int {
     return result
 }
 let task4Array = myArrayChar.sorted(by: {
-    
-    
-    $0 > $1
-    
+    switch (priority(myString: $0), priority(myString: $1)) {
+    case let(x, y) where x < y: return true
+    case let(x, y) where x > y: return false
+    default: return $0 <= $1
+    }
 })
-//print(String(task4Array))
+print(String(task4Array))
  /*
  5. Проделайте задание №3 но для нахождения минимальной и максимальной буквы из массива букв (соответственно скалярному значению)
  */
