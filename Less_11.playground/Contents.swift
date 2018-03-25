@@ -91,6 +91,7 @@ func priority(myString: Character) -> Int {
     }
     return result
 }
+
 let task4Array = myArrayChar.sorted(by: {
     switch (priority(myString: $0), priority(myString: $1)) {
     case let(x, y) where x < y: return true
@@ -98,8 +99,30 @@ let task4Array = myArrayChar.sorted(by: {
     default: return $0 <= $1
     }
 })
+ 
 print(String(task4Array))
+
  /*
  5. Проделайте задание №3 но для нахождения минимальной и максимальной буквы из массива букв (соответственно скалярному значению)
  */
 print("------Task_5-----------")
+let task5String = "Cable News Network (CNN) was launched in 1980, 34 years ago as an American basic cable & Satellite television. The 24 hour news channel was established by the Ted Turner which decorated the channel as the first all-news channel of States then. The channel was also the only of its kind to televise the news for 24 hours, broadcasting cnn live stream with HD quality."
+
+func task5(arg1: String, foo: (String, String?) -> Bool) -> String {
+    var result: String?
+    for obj in arg1 {
+        if foo(String(obj),result) {
+            result = String(obj)
+        }
+    }
+    return result!
+}
+// Max
+print(task5(arg1: task5String, foo: { $1 == nil || $0 > $1! }))
+
+// Mim
+print(task5(arg1: task5String, foo: { $1 == nil || $0 < $1! }))
+
+
+
+
