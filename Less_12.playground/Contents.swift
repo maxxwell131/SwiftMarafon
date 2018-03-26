@@ -3,6 +3,8 @@
  
  2. Сделайте так, чтобы энумовские значения имели rawValue типа String. Каждому типу фигуры установите соответствующее английское название. Создайте функцию, которая выводит в консоль (текстово, без юникода) название фигуры, цвет и расположение. Используя эту функцию распечатайте все фигуры в массиве.
  */
+print("---Task 1 & 2---")
+
 enum Piece {
     case King(name: Name, color: Color,positionX: Position, positionY: Position)
     case Queen(name: Name, color: Color, positionX: Position, positionY: Position)
@@ -74,12 +76,39 @@ for obj in chessboard {
  print(" \u{265F} \u{2659} ")
 */
 
+print("---Task 3---")
 
 //MARK: функция печатает на экран доску и выводит на нее фигуры
 func showChessboard (board: [Piece]) {
     for obj in board {
         print(drawPiece(piece: obj))
     }
+    var chessBoard = String()
+    
+    for i in 1...8 {
+        for j in 1...8 {
+            //проверка piece из массива фигур, если есть фигура с текущими координатами, печатаем фигуру иначе клетку
+            chessBoard += ((i + j) % 2 == 0 ? "\u{2B1C}" :  "\u{2B1B}")
+        }
+        chessBoard += "\r"
+    }
+    print(chessBoard)
+}
+
+func decodeColToInt(col: String) -> Int {
+    var result = Int()
+    switch col {
+    case "A": result = 1
+    case "B": result = 2
+    case "C": result = 3
+    case "D": result = 4
+    case "E": result = 5
+    case "F": result = 6
+    case "G": result = 7
+    case "H": result = 8
+    default: break
+    }
+    return result
 }
 
 //MARK: функция принимает фигуру, расшифровывает и возвращает рисинок Unicode
@@ -114,4 +143,5 @@ func colorOfCell() {
  4. Создайте функцию, которая будет принимать шахматную фигуру и тюпл новой позиции. Эта функция должна передвигать фигуру на новую позицию, причем перемещение должно быть легальным: нельзя передвинуть фигуру за пределы поля и нельзя двигать фигуры так, как нельзя их двигать в реальных шахматах (для мегамонстров программирования). Вызовите эту функцию для нескольких фигур и распечатайте поле снова.
  5. Следите чтобы ваш код был красивым!
  */
+print("---Task 4---")
 
