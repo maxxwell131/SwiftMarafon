@@ -80,20 +80,54 @@ print("---Task 3---")
 
 //MARK: функция печатает на экран доску и выводит на нее фигуры
 func showChessboard (board: [Piece]) {
-    for obj in board {
-        print(drawPiece(piece: obj))
-    }
     var chessBoard = String()
     
     for i in 1...8 {
         for j in 1...8 {
             //проверка piece из массива фигур, если есть фигура с текущими координатами, печатаем фигуру иначе клетку
+            
+            //if true {
+            //    drawPiece(piece: <#T##Piece#>)
+            //}
+
+            
             chessBoard += ((i + j) % 2 == 0 ? "\u{2B1C}" :  "\u{2B1B}")
         }
         chessBoard += "\r"
     }
     print(chessBoard)
 }
+
+func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) { //-> ( Int, Int)
+    //var tmpPiece: Piece
+    var result: (x: Int, y:Int)
+    
+    for obj in board {
+        let currentPieceXY:Int
+        let result:String
+        
+        switch obj {
+        case .King(_, let color, let posX, let posY):
+            result = "\(color.rawValue) color with position: \(posX) and \(posY)"
+        case .Queen(let name, let color, let posX, let posY):
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        case .Bishop(let name, let color, let posX, let posY):
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        case .Knight(let name, let color, let posX, let posY):
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        case .Castle(let name, let color, let posX, let posY):
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        case .Pawn(let name, let color, let posX, let posY):
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        }
+        
+        print(result)
+        //print(drawPiece(piece: obj))
+    }
+    //return result
+}
+
+chekPieceOnTheBoard(WithX: 1, AndY: 1, InThe: chessboard)
 
 func decodeColToInt(col: String) -> Int {
     var result = Int()
