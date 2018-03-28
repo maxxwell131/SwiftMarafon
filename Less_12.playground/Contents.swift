@@ -1,3 +1,4 @@
+import Foundation
 /*
  1. Создать энум с шахматными фигруами (король, ферзь и т.д.). Каждая фигура должна иметь цвет белый либо черный (надеюсь намек понят), а так же букву и цифру для позиции. Создайте пару фигур с расположением на доске, так, чтобы черному королю был мат :) Поместите эти фигуры в массив фигур
  
@@ -6,12 +7,12 @@
 print("---Task 1 & 2---")
 
 enum Piece {
-    case King(name: Name, color: Color,positionX: Position, positionY: Position)
-    case Queen(name: Name, color: Color, positionX: Position, positionY: Position)
-    case Bishop(name: Name, color: Color, positionX: Position, positionY: Position)
-    case Knight(name: Name, color: Color, positionX: Position, positionY: Position)
-    case Castle(name: Name, color: Color, positionX: Position, positionY: Position)
-    case Pawn(name: Name, color: Color, positionX: Position, positionY: Position)
+    case King(name: Name, color: Color,positionX: PositionX, positionY: Position)
+    case Queen(name: Name, color: Color, positionX: PositionX, positionY: Position)
+    case Bishop(name: Name, color: Color, positionX: PositionX, positionY: Position)
+    case Knight(name: Name, color: Color, positionX: PositionX, positionY: Position)
+    case Castle(name: Name, color: Color, positionX: PositionX, positionY: Position)
+    case Pawn(name: Name, color: Color, positionX: PositionX, positionY: Position)
     
     enum Name: String {
         case King = "King"
@@ -29,14 +30,25 @@ enum Piece {
     }
     
     enum Position {
-        case x(String)
+        case x(PositionX)
         case y(Int)
+    }
+    
+    enum PositionX: Int {
+        case A = 1
+        case B = 2
+        case C = 3
+        case D = 4
+        case E = 5
+        case F = 6
+        case G = 7
+        case H = 8
     }
 }
 
-let whiteKing: Piece = .King(name: .King, color: .White,positionX: .x("A"), positionY: .y(1))
-let blackKing: Piece = .King(name: .King, color: .Black, positionX: .x("A"), positionY: .y(2))
-let blackCastle: Piece = .Castle(name: .Castle, color: .Black, positionX: .x("B"), positionY: .y(1))
+let whiteKing: Piece = .King(name: .King, color: .White,positionX: .A, positionY: .y(1))
+let blackKing: Piece = .King(name: .King, color: .Black, positionX: .A, positionY: .y(2))
+let blackCastle: Piece = .Castle(name: .Castle, color: .Black, positionX: .B, positionY: .y(1))
 
 let chessboard: [Piece] = [ whiteKing, blackKing, blackCastle]
 
@@ -45,7 +57,7 @@ func showPiece(piece: Piece) -> String{
     
     switch piece {
     case .King(let name, let color, let posX, let posY):
-        result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+        result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
     case .Queen(let name, let color, let posX, let posY):
         result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
     case .Bishop(let name, let color, let posX, let posY):
@@ -100,26 +112,46 @@ func showChessboard (board: [Piece]) {
 
 func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) { //-> ( Int, Int)
     //var tmpPiece: Piece
-    var result: (x: Int, y:Int)
+    //var result: (x: Int, y:Int)
     
     for obj in board {
-        let currentPieceXY:Int
+        //let currentPieceXY:Int
         let result:String
         
         switch obj {
         case .King(_, let color, let posX, let posY):
-            result = "\(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         case .Queen(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         case .Bishop(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         case .Knight(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         case .Castle(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         case .Pawn(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
+            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            let posX = posX.rawValue
+            //let posY: Int = posY
+            print(posX)
         }
+        
+        
         
         print(result)
         //print(drawPiece(piece: obj))
@@ -172,6 +204,9 @@ showChessboard(board: chessboard)
 func colorOfCell() {
     
 }
+ 
+
+print("---Task 4---")
 
 /*
  4. Создайте функцию, которая будет принимать шахматную фигуру и тюпл новой позиции. Эта функция должна передвигать фигуру на новую позицию, причем перемещение должно быть легальным: нельзя передвинуть фигуру за пределы поля и нельзя двигать фигуры так, как нельзя их двигать в реальных шахматах (для мегамонстров программирования). Вызовите эту функцию для нескольких фигур и распечатайте поле снова.
