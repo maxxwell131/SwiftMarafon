@@ -57,7 +57,7 @@ func showPiece(piece: Piece) -> String{
     
     switch piece {
     case .King(let name, let color, let posX, let posY):
-        result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+        result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
     case .Queen(let name, let color, let posX, let posY):
         result = "\(name.rawValue) \(color.rawValue) color with position: \(posX) and \(posY)"
     case .Bishop(let name, let color, let posX, let posY):
@@ -78,14 +78,6 @@ for obj in chessboard {
 
 /*
  3. Используя красивые юникодовые представления шахматных фигур, выведите в консоли вашу доску. Если клетка не содержит фигуры, то используйте белую или черную клетку. Это должна быть отдельная функция, которая распечатывает доску с фигурами (принимает массив фигур и ничего не возвращает)
- 
- print(" \u{2B1C} \u{2B1B}")
- print(" \u{265A} \u{2654} ")
- print(" \u{265B} \u{2655} ")
- print(" \u{265C} \u{2656} ")
- print(" \u{265D} \u{2657} ")
- print(" \u{265E} \u{2658} ")
- print(" \u{265F} \u{2659} ")
 */
 
 print("---Task 3---")
@@ -98,17 +90,16 @@ func showChessboard (board: [Piece]) {
         for j in 1...8 {
             //проверка piece из массива фигур, если есть фигура с текущими координатами, печатаем фигуру иначе клетку
             
-            //if true {
-            //    drawPiece(piece: <#T##Piece#>)
-            //}
-
-            
-            chessBoard += ((i + j) % 2 == 0 ? "\u{2B1C}" :  "\u{2B1B}")
+            if let currentPiece = chekPieceOnTheBoard(WithX: i, AndY: j, InThe: chessboard) {
+                chessBoard += currentPiece
+            } else {
+                chessBoard += ((i + j) % 2 == 0 ? "\u{2B1C}" :  "\u{2B1B}")
+            }
         }
-        chessBoard += "\r"
+            chessBoard += "\r"
+        }
+        print(chessBoard)
     }
-    print(chessBoard)
-}
 
 //MARK: функция принимает фигуру, расшифровывает и возвращает рисинок Unicode
 func drawPiece(piece: Piece) -> String{
@@ -132,94 +123,47 @@ func drawPiece(piece: Piece) -> String{
 }
 
 
-func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) { //-> ( Int, Int)
-    //var tmpPiece: Piece
-    //var result: (x: Int, y:Int)
+func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) -> String? { //-> ( Int, Int)
+    var result: String?
     
     for obj in board {
-        //let currentPieceXY:Int
-        var result:String
         var positionX: Int
         var positionY: Int
         
         switch obj {
-        case .King(_, let color, let posX, let posY):
-            result = "\(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+        case .King(_, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            print(posX)
-            print(posY)
-        case .Queen(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            
+        case .Queen( _, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            print(posX)
-            print(posY)
-        case .Bishop(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+            
+        case .Bishop( _, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            print(posX)
-            print(posY)
-        case .Knight(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+
+        case .Knight( _, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            print(posX)
-            print(posY)
-        case .Castle(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+
+        case .Castle( _, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            //let posY: Int = posY
-            print(posX)
-            print(posY)
-        case .Pawn(let name, let color, let posX, let posY):
-            result = "\(name.rawValue) \(color.rawValue) color with position: \(posX.rawValue) and \(posY)"
+
+        case .Pawn( _, _, let posX, let posY):
             positionX = posX.rawValue
             positionY = posY
-            print(posX)
-            print(posY)
         }
         
         if (positionX == _x && positionY == _y) {
-            print(drawPiece(piece: obj))
+            result = drawPiece(piece: obj)
         }
-        
-        print(result)
-        //print(drawPiece(piece: obj))
-    }
-    //return result
-}
-
-chekPieceOnTheBoard(WithX: 1, AndY: 1, InThe: chessboard)
-chekPieceOnTheBoard(WithX: 1, AndY: 2, InThe: chessboard)
-
-
-func decodeColToInt(col: String) -> Int {
-    var result = Int()
-    switch col {
-    case "A": result = 1
-    case "B": result = 2
-    case "C": result = 3
-    case "D": result = 4
-    case "E": result = 5
-    case "F": result = 6
-    case "G": result = 7
-    case "H": result = 8
-    default: break
     }
     return result
 }
 
-
 showChessboard(board: chessboard)
-
-
-func colorOfCell() {
-    
-}
- 
 
 print("---Task 4---")
 
