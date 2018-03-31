@@ -173,3 +173,41 @@ print("---Task 4---")
  */
 print("---Task 4---")
 
+func MovePiece( piece: Piece, toPositions: (x: Piece.PositionX, y: Int)) -> Bool{
+    var result: Bool!
+    
+    if toPositions.y < 1 || toPositions.y > 9 {
+        result = false
+    }
+ 
+    switch piece {
+    case .King(_, let color, _ , _ ):
+        piece = Piece.King(name: .King, color: color, positionX: toPositions.x, positionY: toPositions.y)
+        result = true
+    case .Queen( _, _, let posX, let posY):
+        positionX = posX.rawValue
+        positionY = posY
+        
+    case .Bishop( _, _, let posX, let posY):
+        positionX = posX.rawValue
+        positionY = posY
+        
+    case .Knight( _, _, let posX, let posY):
+        positionX = posX.rawValue
+        positionY = posY
+        
+    case .Castle( _, _, let posX, let posY):
+        positionX = posX.rawValue
+        positionY = posY
+        
+    case .Pawn( _, _, let posX, let posY):
+        positionX = posX.rawValue
+        positionY = posY
+    }
+    
+    return result
+}
+
+
+
+
