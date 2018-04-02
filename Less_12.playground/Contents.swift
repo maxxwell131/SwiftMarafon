@@ -46,11 +46,11 @@ enum Piece {
     }
 }
 
-let whiteKing: Piece = .King(name: .King, color: .White,positionX: .A, positionY: 1)
-let blackKing: Piece = .King(name: .King, color: .Black, positionX: .A, positionY: 2)
-let blackCastle: Piece = .Castle(name: .Castle, color: .Black, positionX: .B, positionY: 1)
+var whiteKing: Piece = .King(name: .King, color: .White,positionX: .A, positionY: 1)
+var blackKing: Piece = .King(name: .King, color: .Black, positionX: .A, positionY: 2)
+var blackCastle: Piece = .Castle(name: .Castle, color: .Black, positionX: .B, positionY: 1)
 
-let chessboard: [Piece] = [ whiteKing, blackKing, blackCastle]
+var chessboard: [Piece] = [ whiteKing, blackKing, blackCastle]
 
 func showPiece(piece: Piece) -> String{
     var result = String()
@@ -123,7 +123,7 @@ func drawPiece(piece: Piece) -> String{
 }
 
 
-func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) -> String? { //-> ( Int, Int)
+func chekPieceOnTheBoard(WithX _x: Int, AndY _y:Int, InThe board: [Piece]) -> String? {
     var result: String?
     
     for obj in board {
@@ -171,43 +171,39 @@ print("---Task 4---")
  4. Создайте функцию, которая будет принимать шахматную фигуру и тюпл новой позиции. Эта функция должна передвигать фигуру на новую позицию, причем перемещение должно быть легальным: нельзя передвинуть фигуру за пределы поля и нельзя двигать фигуры так, как нельзя их двигать в реальных шахматах (для мегамонстров программирования). Вызовите эту функцию для нескольких фигур и распечатайте поле снова.
  5. Следите чтобы ваш код был красивым!
  */
-print("---Task 4---")
-
-func MovePiece( piece: Piece, toPositions: (x: Piece.PositionX, y: Int)) -> Bool{
+func MovePiece( piece: inout Piece, toPositions: ( x: Piece.PositionX , y: Int )) -> Bool{
     var result: Bool!
     
-    if toPositions.y < 1 || toPositions.y > 9 {
+    if (toPositions.y < 1 || toPositions.y > 9) {
         result = false
+    } else {
+        
+        switch piece {
+        case .King(_, let _color, _ , _ ):
+            piece = Piece.King(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        case .Queen(_, let _color, _ , _ ):
+            piece = Piece.Queen(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        case .Bishop(_, let _color, _ , _ ):
+            piece = Piece.Bishop(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        case .Knight(_, let _color, _ , _ ):
+            piece = Piece.Knight(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        case .Castle(_, let _color, _ , _ ):
+            piece = Piece.Castle(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        case .Pawn(_, let _color, _ , _ ):
+            piece = Piece.Pawn(name: .King, color: _color, positionX: toPositions.x , positionY: toPositions.y)
+            result = true
+        default: break
+        }
     }
- 
-    switch piece {
-    case .King(_, let color, _ , _ ):
-        piece = Piece.King(name: .King, color: color, positionX: toPositions.x, positionY: toPositions.y)
-        result = true
-    case .Queen( _, _, let posX, let posY):
-        positionX = posX.rawValue
-        positionY = posY
-        
-    case .Bishop( _, _, let posX, let posY):
-        positionX = posX.rawValue
-        positionY = posY
-        
-    case .Knight( _, _, let posX, let posY):
-        positionX = posX.rawValue
-        positionY = posY
-        
-    case .Castle( _, _, let posX, let posY):
-        positionX = posX.rawValue
-        positionY = posY
-        
-    case .Pawn( _, _, let posX, let posY):
-        positionX = posX.rawValue
-        positionY = posY
-    }
-    
     return result
 }
 
 
-
+MovePiece(piece: &chessboard[0], toPositions: (x: .B, y:5))
+showChessboard(board: chessboard)
 
