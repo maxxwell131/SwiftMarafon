@@ -58,17 +58,59 @@ var classBookStructSorted4 = classBookStruct.sorted(by: {
 print(ClassBookDescripton(classBookStruct: classBookStructSorted4))
 
 //5. Создайте переменную и присвойте ей ваш существующий массив. Измените в нем данные всех студентов. Изменится ли первый массив? Распечатайте оба массива.
-print("--Task 4--")
+print("--Task 5--")
 var copyOf = classBookStructSorted4
 classBookStructSorted4.removeLast()
 classBookStructSorted4.removeFirst()
 classBookStructSorted4.removeLast()
 classBookStructSorted4.removeFirst()
 print(ClassBookDescripton(classBookStruct: classBookStructSorted4))
-print("--Task 4--")
+print("--Task 5--")
 print(ClassBookDescripton(classBookStruct: copyOf))
 
 //6. Теперь проделайте все тоже самое, но не для структуры Студент, а для класса. Какой результат в 5м задании? Что изменилось и почему?
+//6.1. Создайте class студент. Добавьте свойства: имя, фамилия, год рождения, средний бал. Создайте несколько экземпляров class student и заполните их данными. Положите их всех в массив (журнал).
+class StudentClass {
+    var name: String
+    var surname: String
+    var birthday: String
+    var averangeScore: UInt
+    
+    init(_name: String, _surname: String, _birthday: String, _averangeScore: UInt) {
+        self.name = _name
+        self.surname = _surname
+        self.averangeScore = _averangeScore
+        self.birthday = _birthday
+    }
+}
+
+var classStudent1 = StudentClass(_name: "Vasya", _surname: "Petrov", _birthday: "12-10-2000", _averangeScore: 4)
+var classStudent2 = StudentClass(_name: "Petya", _surname: "Fedorov", _birthday: "13-10-2000", _averangeScore: 17)
+var classStudent3 = StudentClass(_name: "Afonya", _surname: "Stepanov", _birthday: "14-10-2000", _averangeScore: 8)
+var classStudent4 = StudentClass(_name: "Stepan", _surname: "Ivanov", _birthday: "15-10-2000", _averangeScore: 6)
+var classStudent5 = StudentClass(_name: "Evstegney", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 10)
+var classStudent6 = StudentClass(_name: "Leopold", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 11)
+var classStudent7 = StudentClass(_name: "Anyfriy", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 7)
+
+
+
+var classBookClass = [ classStudent1, classStudent2, classStudent3, classStudent4,
+                                        classStudent5, classStudent6, classStudent7]
+classBookClass
+print("--Task 62--")
+//6.2. Напишите функцию, которая принимает массив студентов и выводит в консоль данные каждого. Перед выводом каждого студента добавляйте порядковый номер в “журнале”, начиная с 1.
+func ClassBookDescripton(classBook: [StudentClass]) -> String {
+    var result:String = ""
+    var counter = 1
+    
+    for obj in classBook {
+        result += "\(counter). name: \(obj.name), surname: \(obj.surname), birthday: \(obj.birthday), averangeScore: \(obj.averangeScore)\r"
+        counter += 1
+    }
+    return result
+}
+
+print(ClassBookDescripton(classBookStruct: classBookStruct))
 
 //7. Выполните задание шахмат из урока по энумам используя структуры либо классы
 //71. Создать энум с шахматными фигруами (король, ферзь и т.д.). Каждая фигура должна иметь цвет белый либо черный (надеюсь намек понят), а так же букву и цифру для позиции. Создайте пару фигур с расположением на доске, так, чтобы черному королю был мат :) Поместите эти фигуры в массив фигур
