@@ -18,8 +18,13 @@ var structStudent2 = StudentStruct(_name: "Petya", _surname: "Fedorov", _birthda
 var structStudent3 = StudentStruct(_name: "Afonya", _surname: "Stepanov", _birthday: "14-10-2000", _averangeScore: 8)
 var structStudent4 = StudentStruct(_name: "Stepan", _surname: "Ivanov", _birthday: "15-10-2000", _averangeScore: 6)
 var structStudent5 = StudentStruct(_name: "Evstegney", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 10)
+var structStudent6 = StudentStruct(_name: "Leopold", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 11)
+var structStudent7 = StudentStruct(_name: "Anyfriy", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 7)
 
-var classBookStruct:[StudentStruct] = [ structStudent1, structStudent2, structStudent3, structStudent4, structStudent5]
+
+
+var classBookStruct:[StudentStruct] = [ structStudent1, structStudent2, structStudent3, structStudent4,
+                                        structStudent5, structStudent6, structStudent7]
 classBookStruct
 
 //2. Напишите функцию, которая принимает массив студентов и выводит в консоль данные каждого. Перед выводом каждого студента добавляйте порядковый номер в “журнале”, начиная с 1.
@@ -38,10 +43,19 @@ print(ClassBookDescripton(classBookStruct: classBookStruct))
 
 //3. С помощью функции sorted отсортируйте массив по среднему баллу, по убыванию и распечатайте “журнал”.
 print("--Task 3--")
-
-print(ClassBookDescripton(classBookStruct: classBookStruct.sorted(by: { $0.averangeScore < $1.averangeScore})))
+let classBookStructSorted3 = classBookStruct.sorted(by: { $0.averangeScore < $1.averangeScore})
+print(ClassBookDescripton(classBookStruct: classBookStructSorted3))
 
 //4. Отсортируйте теперь массив по фамилии (по возрастанию), причем если фамилии одинаковые, а вы сделайте так чтобы такое произошло, то сравниваются по имени. Распечатайте “журнал”.
+print("--Task 4--")
+let classBookStructSorted4 = classBookStruct.sorted(by: {
+    if $0.surname != $1.surname {
+        return $0.surname < $1.surname
+    } else {
+        return $0.name < $1.name
+    }
+})
+print(ClassBookDescripton(classBookStruct: classBookStructSorted4))
 
 //5. Создайте переменную и присвойте ей ваш существующий массив. Измените в нем данные всех студентов. Изменится ли первый массив? Распечатайте оба массива.
 //6. Теперь проделайте все тоже самое, но не для структуры Студент, а для класса. Какой результат в 5м задании? Что изменилось и почему?
