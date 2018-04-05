@@ -48,7 +48,7 @@ print(ClassBookDescripton(classBookStruct: classBookStructSorted3))
 
 //4. Отсортируйте теперь массив по фамилии (по возрастанию), причем если фамилии одинаковые, а вы сделайте так чтобы такое произошло, то сравниваются по имени. Распечатайте “журнал”.
 print("--Task 4--")
-let classBookStructSorted4 = classBookStruct.sorted(by: {
+var classBookStructSorted4 = classBookStruct.sorted(by: {
     if $0.surname != $1.surname {
         return $0.surname < $1.surname
     } else {
@@ -58,6 +58,16 @@ let classBookStructSorted4 = classBookStruct.sorted(by: {
 print(ClassBookDescripton(classBookStruct: classBookStructSorted4))
 
 //5. Создайте переменную и присвойте ей ваш существующий массив. Измените в нем данные всех студентов. Изменится ли первый массив? Распечатайте оба массива.
+print("--Task 4--")
+var copyOf = classBookStructSorted4
+classBookStructSorted4.removeLast()
+classBookStructSorted4.removeFirst()
+classBookStructSorted4.removeLast()
+classBookStructSorted4.removeFirst()
+print(ClassBookDescripton(classBookStruct: classBookStructSorted4))
+print("--Task 4--")
+print(ClassBookDescripton(classBookStruct: copyOf))
+
 //6. Теперь проделайте все тоже самое, но не для структуры Студент, а для класса. Какой результат в 5м задании? Что изменилось и почему?
 
 //7. Выполните задание шахмат из урока по энумам используя структуры либо классы
