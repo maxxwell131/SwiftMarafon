@@ -23,6 +23,18 @@ var classBookStruct:[StudentStruct] = [ structStudent1, structStudent2, structSt
 classBookStruct
 
 //2. Напишите функцию, которая принимает массив студентов и выводит в консоль данные каждого. Перед выводом каждого студента добавляйте порядковый номер в “журнале”, начиная с 1.
+func ClassBookDescripton(classBookStruct: [StudentStruct]) -> String {
+    var result:String = ""
+    var counter = 1
+    
+    for obj in classBookStruct {
+        result += "\(counter). name: \(obj.name), surname: \(obj.surname), birthday: \(obj.birthday), averangeScore: \(obj.averangeScore)\r"
+        counter += 1
+    }
+    return result
+}
+
+print(ClassBookDescripton(classBookStruct: classBookStruct))
 
 //3. С помощью функции sorted отсортируйте массив по среднему баллу, по убыванию и распечатайте “журнал”.
 
