@@ -97,21 +97,51 @@ var classStudent7 = StudentClass(_name: "Anyfriy", _surname: "Hrenov", _birthday
 var classBookClass = [ classStudent1, classStudent2, classStudent3, classStudent4,
                                         classStudent5, classStudent6, classStudent7]
 classBookClass
-print("--Task 62--")
+print("--Task 6.2--")
 //6.2. Напишите функцию, которая принимает массив студентов и выводит в консоль данные каждого. Перед выводом каждого студента добавляйте порядковый номер в “журнале”, начиная с 1.
 func ClassBookDescripton(classBook: [StudentClass]) -> String {
     var result:String = ""
     var counter = 1
     
     for obj in classBook {
-        result += "\(counter). name: \(obj.name), surname: \(obj.surname), birthday: \(obj.birthday), averangeScore: \(obj.averangeScore)\r"
+        result += "ClassBook Class\(counter). name: \(obj.name), surname: \(obj.surname), birthday: \(obj.birthday), averangeScore: \(obj.averangeScore)\r"
         counter += 1
     }
     return result
 }
 
-print(ClassBookDescripton(classBookStruct: classBookStruct))
+print(ClassBookDescripton(classBook: classBookClass))
 
+//6.3. С помощью функции sorted отсортируйте массив по среднему баллу, по убыванию и распечатайте “журнал”.
+print("--Task 6.3--")
+let classBookClassSorted3 = classBookClass.sorted(by: { $0.averangeScore < $1.averangeScore})
+print(ClassBookDescripton(classBook: classBookClassSorted3))
+
+//6.4. Отсортируйте теперь массив по фамилии (по возрастанию), причем если фамилии одинаковые, а вы сделайте так чтобы такое произошло, то сравниваются по имени. Распечатайте “журнал”.
+print("--Task 6.4--")
+var classBookClassSorted4 = classBookClass.sorted(by: {
+    if $0.surname != $1.surname {
+        return $0.surname < $1.surname
+    } else {
+        return $0.name < $1.name
+    }
+})
+print(ClassBookDescripton(classBook: classBookClassSorted4))
+
+//6.5. Создайте переменную и присвойте ей ваш существующий массив. Измените в нем данные всех студентов. Изменится ли первый массив? Распечатайте оба массива.
+print("--Task 6.5--classBookClassSorted4")
+var copyOfSortedClBook = classBookClassSorted4
+classBookClassSorted4.removeLast()
+classBookClassSorted4.removeFirst()
+classBookClassSorted4.removeLast()
+classBookClassSorted4.removeFirst()
+print(ClassBookDescripton(classBook: classBookClassSorted4))
+print("--Task 6.5--copyOfSortedClBook")
+print(ClassBookDescripton(classBook: copyOfSortedClBook))
+copyOfSortedClBook.removeFirst()
+copyOfSortedClBook.removeFirst()
+print("--Task 6.5--copyOfSortedClBook")
+print(ClassBookDescripton(classBook: copyOfSortedClBook))
 //7. Выполните задание шахмат из урока по энумам используя структуры либо классы
 //71. Создать энум с шахматными фигруами (король, ферзь и т.д.). Каждая фигура должна иметь цвет белый либо черный (надеюсь намек понят), а так же букву и цифру для позиции. Создайте пару фигур с расположением на доске, так, чтобы черному королю был мат :) Поместите эти фигуры в массив фигур
 //72. Сделайте так, чтобы энумовские значения имели rawValue типа String. Каждому типу фигуры установите соответствующее английское название. Создайте функцию, которая выводит в консоль (текстово, без юникода) название фигуры, цвет и расположение. Используя эту функцию распечатайте все фигуры в массиве.
