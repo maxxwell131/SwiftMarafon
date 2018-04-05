@@ -1,4 +1,26 @@
 //1. Создайте структуру студент. Добавьте свойства: имя, фамилия, год рождения, средний бал. Создайте несколько экземпляров этой структуры и заполните их данными. Положите их всех в массив (журнал).
+struct StudentStruct {
+    var name: String
+    var surname: String
+    var birthday: String
+    var averangeScore: UInt
+    
+    init(_name: String, _surname: String, _birthday: String, _averangeScore: UInt) {
+        self.name = _name
+        self.surname = _surname
+        self.averangeScore = _averangeScore
+        self.birthday = _birthday
+    }
+}
+
+var structStudent1 = StudentStruct(_name: "Vasya", _surname: "Petrov", _birthday: "12-10-2000", _averangeScore: 5)
+var structStudent2 = StudentStruct(_name: "Petya", _surname: "Fedorov", _birthday: "13-10-2000", _averangeScore: 7)
+var structStudent3 = StudentStruct(_name: "Afonya", _surname: "Stepanov", _birthday: "14-10-2000", _averangeScore: 8)
+var structStudent4 = StudentStruct(_name: "Stepan", _surname: "Ivanov", _birthday: "15-10-2000", _averangeScore: 9)
+var structStudent5 = StudentStruct(_name: "Evstegney", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 10)
+
+var classBookStruct:[StudentStruct] = [ structStudent1, structStudent2, structStudent3, structStudent4, structStudent5]
+classBookStruct
 
 //2. Напишите функцию, которая принимает массив студентов и выводит в консоль данные каждого. Перед выводом каждого студента добавляйте порядковый номер в “журнале”, начиная с 1.
 
