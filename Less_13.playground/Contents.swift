@@ -13,10 +13,10 @@ struct StudentStruct {
     }
 }
 
-var structStudent1 = StudentStruct(_name: "Vasya", _surname: "Petrov", _birthday: "12-10-2000", _averangeScore: 5)
-var structStudent2 = StudentStruct(_name: "Petya", _surname: "Fedorov", _birthday: "13-10-2000", _averangeScore: 7)
+var structStudent1 = StudentStruct(_name: "Vasya", _surname: "Petrov", _birthday: "12-10-2000", _averangeScore: 4)
+var structStudent2 = StudentStruct(_name: "Petya", _surname: "Fedorov", _birthday: "13-10-2000", _averangeScore: 17)
 var structStudent3 = StudentStruct(_name: "Afonya", _surname: "Stepanov", _birthday: "14-10-2000", _averangeScore: 8)
-var structStudent4 = StudentStruct(_name: "Stepan", _surname: "Ivanov", _birthday: "15-10-2000", _averangeScore: 9)
+var structStudent4 = StudentStruct(_name: "Stepan", _surname: "Ivanov", _birthday: "15-10-2000", _averangeScore: 6)
 var structStudent5 = StudentStruct(_name: "Evstegney", _surname: "Hrenov", _birthday: "16-10-2000", _averangeScore: 10)
 
 var classBookStruct:[StudentStruct] = [ structStudent1, structStudent2, structStudent3, structStudent4, structStudent5]
@@ -37,6 +37,9 @@ func ClassBookDescripton(classBookStruct: [StudentStruct]) -> String {
 print(ClassBookDescripton(classBookStruct: classBookStruct))
 
 //3. С помощью функции sorted отсортируйте массив по среднему баллу, по убыванию и распечатайте “журнал”.
+print("--Task 3--")
+
+print(ClassBookDescripton(classBookStruct: classBookStruct.sorted(by: { $0.averangeScore < $1.averangeScore})))
 
 //4. Отсортируйте теперь массив по фамилии (по возрастанию), причем если фамилии одинаковые, а вы сделайте так чтобы такое произошло, то сравниваются по имени. Распечатайте “журнал”.
 
