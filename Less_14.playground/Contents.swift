@@ -1,6 +1,36 @@
 import Foundation
 
 //1. Самостоятельно повторить проделанное в уроке
+//2. Добавить студенту property «Дата рождения» (пусть это будет еще одна структура, содержащая день, месяц, год) и два computed property: первое — вычисляющее его возраст, второе — вычисляющее, сколько лет он учился (считать, что он учился в школе с 6 лет, если студенту меньше 6 лет — возвращать 0)
+
+struct DateOfBirth {
+    var day: Int
+    var mounth: Int
+    var year: Int
+    
+    var age: Int {
+        get {
+            let currentDate = Date()
+            let calendar = Calendar.current
+            let currentYear = calendar.component(.year, from: currentDate)
+            
+            return currentYear - year
+        }
+    }
+    
+    var studentWasStudying: Int {
+        get {
+            var result = 0
+            
+            if age > 6 {
+                result = age - 6
+            }
+            return result
+        }
+    }
+    
+    
+}
 
 struct Student {
     var firstName: String {
@@ -38,11 +68,23 @@ struct Student {
             }
         }
     }
+    
+    var howOldAreYou: DateOfBirth
 }
 
-var student = Student (firstName: "Alex", lastName: "Skutarenko")
+let dateOfBirth = DateOfBirth(day: 20, mounth: 3, year: 1997 )
+var student = Student(firstName: "Petro", lastName: "Rebro", howOldAreYou: dateOfBirth)
 
-//2. Добавить студенту property «Дата рождения» (пусть это будет еще одна структура, содержащая день, месяц, год) и два computed property: первое — вычисляющее его возраст, второе — вычисляющее, сколько лет он учился (считать, что он учился в школе с 6 лет, если студенту меньше 6 лет — возвращать 0)
+print(student.firstName)
+print(student.lastName)
+print(student.fullName)
+print(student.howOldAreYou)
+print(student.howOldAreYou.age)
+print(student.howOldAreYou.studentWasStudying)
+
+student.firstName = "Semen"
+
+
 
 //3. Создать структуру «Отрезок», содержащую две внутренние структуры «Точки». Структуру «Точка» создать самостоятельно, несмотря на уже имеющуюся в Swift’е. Таким образом, структура «Отрезок» содержит две структуры «Точки» — точки A и B (stored properties). Добавить два computed properties: « середина отрезка» и «длина» (считать математическими функциями)
 
