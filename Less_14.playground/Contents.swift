@@ -28,8 +28,6 @@ struct DateOfBirth {
             return result
         }
     }
-    
-    
 }
 
 struct Student {
@@ -87,5 +85,35 @@ student.firstName = "Semen"
 
 
 //3. Создать структуру «Отрезок», содержащую две внутренние структуры «Точки». Структуру «Точка» создать самостоятельно, несмотря на уже имеющуюся в Swift’е. Таким образом, структура «Отрезок» содержит две структуры «Точки» — точки A и B (stored properties). Добавить два computed properties: « середина отрезка» и «длина» (считать математическими функциями)
+struct MyPoint {
+    var x: Int = 0
+    var y: Int = 0
+    
+}
+
+struct MyLine {
+    var A: MyPoint
+    var B: MyPoint
+    
+    var lenghtLine: Double {
+        get {
+            let result = pow(Double(B.x - A.x), 2) + pow(Double(B.y - B.x), 2)
+            return sqrt(result)
+        }
+    }
+    
+    var middleOfLine: MyPoint {
+        get {
+            var result = MyPoint(x: 0, y: 0)
+            result.x = (A.x + B.x) / 2
+            result.y = (A.y + B.y) / 2
+            
+            return result
+        }
+        set {
+            
+        }
+    }
+}
 
 //4. При изменении середины отрезка должно меняться положение точек A и B. При изменении длины, меняется положение точки B
