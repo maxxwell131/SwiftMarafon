@@ -55,6 +55,50 @@ obj.path
  2. Создайте энум, который будет представлять некую цветовую гамму. Этот энум должен быть типа Int и как raw значение должен иметь соответствующее 3 байтное представление цвета. Добавьте в этот энум 3 свойства типа: количество цветов в гамме, начальный цвет и конечный цвет.
  */
 
+enum MyColor: Int {
+    case Black = 0x000
+    case White = 0xFFF
+    case Blue = 0xFF
+    case Red = 0xF00
+    case Yellow = 0xFF0
+    
+    static var countColorsOfGammy: Int {
+        var max = 0
+        while let _ = MyColor(rawValue: max) {
+            max = max + 1
+        }
+        return max
+    }
+    
+    static var allCases: [MyColor] {
+    var tmpArray = [MyColor]()
+        var index = 1
+        while let element = self.init(rawValue: index) {
+            tmpArray.append(element)
+            index = index + 1
+        }
+        return tmpArray
+    }
+    
+    static var firstColor: MyColor {
+        return allCases.first!
+    }
+    
+    static var lastColor: MyColor {
+        var tmpArray = [MyColor]()
+        for i in 0..<MyColor.countColorsOfGammy {
+            tmpArray.append(MyColor(rawValue: i)!)
+        }
+        return tmpArray.last!
+    }
+}
+
+let tmpColor = MyColor.Black
+MyColor.countColorsOfGammy
+//MyColor.firstColor
+MyColor.allCases
+
+
 /*
  3. Создайте класс человек, который будет содержать имя, фамилию, возраст, рост и вес. Добавьте несколько свойств непосредственно этому классу чтобы контролировать:
  - минимальный и максимальный возраст каждого объекта
