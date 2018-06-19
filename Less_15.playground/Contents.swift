@@ -62,41 +62,14 @@ enum MyColor: Int {
     case Red = 0xF00
     case Yellow = 0xFF0
     
-    static var countColorsOfGammy: Int {
-        var max = 0
-        while let _ = MyColor(rawValue: max) {
-            max = max + 1
-        }
-        return max
-    }
-    
-    static var allCases: [MyColor] {
-    var tmpArray = [MyColor]()
-        var index = 1
-        while let element = self.init(rawValue: index) {
-            tmpArray.append(element)
-            index = index + 1
-        }
-        return tmpArray
-    }
-    
-    static var firstColor: MyColor {
-        return allCases.first!
-    }
-    
-    static var lastColor: MyColor {
-        var tmpArray = [MyColor]()
-        for i in 0..<MyColor.countColorsOfGammy {
-            tmpArray.append(MyColor(rawValue: i)!)
-        }
-        return tmpArray.last!
-    }
+    static var countColorsOfGammy = 5
+    static var firstColor = MyColor.Black
+    static var lastColor = MyColor.Yellow
 }
 
-let tmpColor = MyColor.Black
 MyColor.countColorsOfGammy
-//MyColor.firstColor
-MyColor.allCases
+MyColor.firstColor
+MyColor.lastColor
 
 
 /*
