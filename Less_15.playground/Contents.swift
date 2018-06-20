@@ -79,3 +79,87 @@ MyColor.lastColor
  - минимально возможный рост и вес
  - самое интересное, создайте свойство, которое будет содержать количество созданных объектов этого класса
  */
+class Human {
+    
+    var firstName: String = "" {
+        didSet {
+            if firstName.count > Human.MaxLengthName || firstName.count < Human.MinLengthName {
+                firstName = oldValue
+            }
+        }
+    }
+    var secondName: String = "" {
+        didSet {
+            if secondName.count > Human.MaxLengthName || secondName.count < Human.MinLengthName {
+                secondName = oldValue
+            }
+        }
+    }
+    var age: Int = 0 {
+        didSet {
+            if age > Human.MaxAge || age < Human.MinAge {
+                age = oldValue
+            }
+        }
+    }
+    var height = 0 {
+        didSet {
+            if height > Human.MaxHeight || height < Human.MinHeight {
+                height = oldValue
+            }
+        }
+    }
+    var weight = 0 {
+        didSet {
+            if weight > Human.MaxWeight || weight < Human.MinWeight {
+                weight = oldValue
+            }
+        }
+    }
+    
+    init(firstName: String, secondName: String, age: Int, height: Int, weight: Int) {
+        self.firstName = firstName
+        self.secondName = secondName
+        self.age = age
+        self.weight = weight
+        self.height = height
+        Human.HumanObjCounter = Human.HumanObjCounter + 1
+    }
+    
+    static var HumanObjCounter = 0
+    
+    class  var MinAge: Int {
+        return 20
+    }
+    
+    class var MaxAge: Int {
+        return 99
+    }
+    
+    class var MinLengthName: Int {
+        return 3
+    }
+    
+    class var MaxLengthName: Int {
+        return 20
+    }
+    
+    class var MinWeight: Int {
+        return 50
+    }
+    
+    class var MaxWeight: Int {
+        return 120
+    }
+    
+    class var MinHeight: Int {
+        return 150
+    }
+    
+    class var MaxHeight: Int {
+        return 195
+    }
+}
+
+var human1 = Human(firstName: "Stepan", secondName: "Petrovsky", age: 25, height: 75, weight: 178)
+Human.HumanObjCounter
