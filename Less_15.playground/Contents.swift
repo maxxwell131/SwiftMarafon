@@ -81,35 +81,35 @@ MyColor.lastColor
  */
 class Human {
     
-    var firstName: String = "" {
+    var firstName: String {
         didSet {
             if self.firstName.count > Human.MaxLengthName || self.firstName.count < Human.MinLengthName {
                 firstName = oldValue
             }
         }
     }
-    var secondName: String = "" {
+    var secondName: String {
         didSet {
             if secondName.count > Human.MaxLengthName || secondName.count < Human.MinLengthName {
                 secondName = oldValue
             }
         }
     }
-    var age: Int = 0 {
+    var age: Int {
         didSet {
             if age > Human.MaxAge || age < Human.MinAge {
                 age = oldValue
             }
         }
     }
-    var height = 0 {
+    var height : Int {
         didSet {
             if height > Human.MaxHeight || height < Human.MinHeight {
                 height = oldValue
             }
         }
     }
-    var weight = 0 {
+    var weight: Int {
         didSet {
             if weight > Human.MaxWeight || weight < Human.MinWeight {
                 weight = oldValue
