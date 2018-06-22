@@ -83,7 +83,7 @@ class Human {
     
     var firstName: String = "" {
         didSet {
-            if firstName.count > Human.MaxLengthName || firstName.count < Human.MinLengthName {
+            if self.firstName.count > Human.MaxLengthName || self.firstName.count < Human.MinLengthName {
                 firstName = oldValue
             }
         }
@@ -161,5 +161,5 @@ class Human {
     }
 }
 
-var human1 = Human(firstName: "Stepan", secondName: "Petrovsky", age: 25, height: 75, weight: 178)
+let human1 = Human(firstName: "Stepan", secondName: "Petrovsky", age: 25, height: 75, weight: 178)
 Human.HumanObjCounter
